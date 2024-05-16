@@ -90,5 +90,5 @@ def getOrderId(o_date,ship_address,c_id):
     return getprocess(sql)
     
 def getOrders(c_id):
-    sql = f"SELECT I.isbn, O.o_id, I.title, I.author, I.genre, I.price, I.i_type, IO.qty, O.o_date, O.ship_address, (IO.qty * I.price) AS total FROM Items I INNER JOIN ItemsOrdered IO ON I.i_id = IO.i_id INNER JOIN Orders O ON IO.o_id = O.o_id INNER JOIN Customer C ON O.c_id = C.c_id WHERE C.c_id = {c_id}"
+    sql = f"SELECT I.isbn, O.o_id, I.title, I.brand, I.size, I.price, I.i_type, IO.qty, O.o_date, O.ship_address, (IO.qty * I.price) AS total FROM Items I INNER JOIN ItemsOrdered IO ON I.i_id = IO.i_id INNER JOIN Orders O ON IO.o_id = O.o_id INNER JOIN Customer C ON O.c_id = C.c_id WHERE C.c_id = {c_id}"
     return getprocess(sql) 

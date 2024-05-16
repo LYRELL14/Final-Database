@@ -97,7 +97,7 @@ def user_searchitem():
             valid = checkfields(keyword)
             if valid:
                 head = ['title','brand','size','price','type']
-                rows = searchlike('Items',title=keyword,author=keyword,genre=keyword,price=keyword,i_type=keyword)
+                rows = searchlike('Items',title=keyword,brand=keyword,size=keyword,price=keyword,i_type=keyword)
                 return render_template("user_items.html",title="user",header=head,itemlist=rows,search=keyword)
             else:
                 return redirect(url_for('user_items'))
@@ -135,7 +135,7 @@ def searchitem()->None:
             valid = checkfields(keyword)
             if valid:
                 head = ['isbn','title','brand','size','price','type']
-                rows = searchlike('Items',ISBN=keyword,title=keyword,author=keyword,genre=keyword,price=keyword,i_type=keyword)
+                rows = searchlike('Items',ISBN=keyword,title=keyword,brand=keyword,size=keyword,price=keyword,i_type=keyword)
                 return render_template("admin_items.html",title="admin",header=head,itemlist=rows,search=keyword)
             else:
                 return redirect(url_for('admin_items'))
@@ -154,13 +154,13 @@ def updateitem(id):
         if request.method == "POST":
             isbn = request.form['isbn'].strip()
             title = request.form['title'].strip()
-            author = request.form['author'].strip()
-            genre = request.form['genre'].strip()
+            brand = request.form['brand'].strip()
+            size = request.form['size'].strip()
             price = request.form['price'].strip()
             i_type = request.form['type'].strip()
-            valid = checkfields(isbn,title,author,genre,price,i_type)
+            valid = checkfields(isbn,title,brand,size,price,i_type)
             if valid:
-                ok = updaterecord('Items',i_id=id,ISBN=isbn,title=title,author=author,genre=genre,price=price,i_type=i_type)
+                ok = updaterecord('Items',i_id=id,ISBN=isbn,title=title,brand=brand,size=size,price=price,i_type=i_type)
                 if ok:
                     flash("Item Updated")
                     return redirect(url_for("admin_items"))
@@ -198,13 +198,13 @@ def additem():
         if request.method == "POST":
             isbn = request.form['isbn'].strip()
             title = request.form['title'].strip()
-            author = request.form['author'].strip()
-            genre = request.form['genre'].strip()
+            brand = request.form['brand'].strip()
+            size = request.form['size'].strip()
             price = request.form['price'].strip()
             i_type = request.form['type'].strip()
-            valid = checkfields(isbn,title,author,genre,price,i_type)
+            valid = checkfields(isbn,title,brand,size,price,i_type)
             if valid:
-                ok = addrecord('Items',ISBN=isbn,title=title,author=author,genre=genre,price=price,i_type=i_type)
+                ok = addrecord('Items',ISBN=isbn,title=title,brand=brand,size=size,price=price,i_type=i_type)
                 if ok:
                     flash("New Item Added")
                     return redirect(url_for("admin_items"))

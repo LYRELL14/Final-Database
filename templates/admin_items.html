@@ -41,8 +41,8 @@
 			<tr>
 				<td>{{ item['ISBN'] }}</td>
 				<td>{{ item['title'] }}</td>
-				<td>{{ item['author'] }}</td>
-				<td>{{ item['genre'] }}</td>
+				<td>{{ item['brand'] }}</td>
+				<td>{{ item['size'] }}</td>
 				<td>&#x20B1; {{ item['price'] }}</td>
 				<td>{{ item['i_type'] }}</td>
 				<td>
@@ -70,17 +70,17 @@
 							<label>TITLE</label>
 							<input type="text" name="title" id="title" class="w3-input w3-border" value="{{ item['title'] }}">
 							<label>BRAND</label>
-							<input type="text" name="author" id="author" class="w3-input w3-border" value="{{ item['author'] }}">
+							<input type="text" name="brand" id="brand" class="w3-input w3-border" value="{{ item['brand'] }}">
 							<label>SIZE</label>
-							<input type="text" name="genre" id="genre" class="w3-input w3-border" value="{{ item['genre'] }}">
+							<input type="text" name="size" id="size" class="w3-input w3-border" value="{{ item['size'] }}">
 							<label>PRICE</label>
 							<input type="number" name="price" id="price" step="any" class="w3-input w3-border" value="{{ item['price'] }}">
 							<label>TYPE</label>
 							<br>
 							<select class="w3-input w3-border" name="type" id="type" data-selected="{{ item['i_type'] }}">
-								<option name="Book" id="Book" value="Motion Control">Motion Control</option>
-								<option name="E-Book" id="E-Book" value="Neutral">Neutral</option>
-								<option name="AudioBook" id="AudioBook" value="Stability">Stability</option>
+								<option name="Motion Control" id="Motion Control" value="Motion Control">Motion Control</option>
+								<option name="Neutral" id="Neutral value="Neutral">Neutral</option>
+								<option name="Stability" id="Stability" value="Stability">Stability</option>
 							</select>
 							<script>
 								document.querySelectorAll('[data-selected]').forEach(e => {e.value = e.dataset.selected});
@@ -114,9 +114,9 @@
 				<label>TITLE</label>
 				<input type="text" name="title" id="title" class="w3-input w3-border">
 				<label>BRAND</label>
-				<input type="text" name="author" id="author" class="w3-input w3-border">
+				<input type="text" name="brand" id="brand" class="w3-input w3-border">
 				<label>SIZE</label>
-				<input type="text" name="genre" id="genre" class="w3-input w3-border">
+				<input type="text" name="size" id="size" class="w3-input w3-border">
 				<label>PRICE</label>
 				<input type="number" name="price" id="price" step="any" class="w3-input w3-border">
 				<label>TYPE</label>

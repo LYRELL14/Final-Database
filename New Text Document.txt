@@ -1,0 +1,49 @@
+CREATE TABLE IF NOT EXISTS 'Admin'('username' varchar(50) unique on conflict ignore,
+'password' varchar(50));
+CREATE TABLE IF NOT EXISTS 'Customer'
+('c_id' integer primary key autoincrement,
+'c_name'varchar(50),
+'c_email' varchar(100),
+'c_address' varchar(100),
+'username' varchar(50) unique on conflict ignore,
+'password' varchar(50));
+CREATE TABLE sqlite_sequence(name,seq);
+CREATE TABLE IF NOT EXISTS 'Cart'
+('cart_id' integer,
+PRIMARY KEY('cart_id'),
+FOREIGN KEY('cart_id') REFERENCES Customer(`c_id`) ON DELETE CASCADE);
+CREATE TABLE IF NOT EXISTS 'Items'
+('i_id' integer primary key autoincrement,
+'ISBN' integer unique on conflict ignore,
+'title' varchar(100),
+'author' varchar(100),
+'genre' varchar(50),
+'price' decimal(10,2),
+'i_type' varchar(25));
+CREATE TABLE IF NOT EXISTS 'ItemsInCart'
+('ic_id' integer primary key autoincrement,
+'cart_id' integer,
+'i_id' integer,
+'qty' integer,
+foreign key('cart_id') references Cart(`cart_id`) on delete cascade,
+foreign key('i_id') references Items(`i_id`) on delete cascade);
+CREATE TABLE IF NOT EXISTS 'Orders'
+('o_id' integer primary key autoincrement,
+'o_date' date,
+'ship_address' varchar(100),
+'c_id' integer,
+FOREIGN KEY('c_id') REFERENCES Customer(`c_id`) ON DELETE CASCADE);
+CREATE TABLE IF NOT EXISTS 'ItemsOrdered'
+('o_id' integer,
+'i_id' integer,
+'qty' integer,
+PRIMARY KEY('o_id', 'i_id'),
+FOREIGN KEY('o_id') REFERENCES Orders(`o_id`) ON DELETE CASCADE,
+FOREIGN KEY('i_id') REFERENCES Items(`i_id`) ON DELETE CASCADE);
+CREATE TABLE IF NOT EXISTS 'Review'
+('r_id' integer primary key autoincrement,
+'rating' integer,
+'comment' varchar(100),
+'r_date' date,
+'i_id' integer,
+FOREIGN KEY('i_id') REFERENCES Items(`i_id`) ON DELETE CASCADE);
